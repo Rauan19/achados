@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Achadinhos – Coletor Mercado Livre",
+  "version": "0.2.3",
+  "description": "Rola a lista de produtos do Mercado Livre, coleta as ofertas e manda pra fila do Conversor de Achadinhos.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://*.mercadolivre.com.br/*", "http://localhost:3000/*"],
+  "optional_host_permissions": ["https://*/*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_popup": "popup.html", "default_title": "Coletor de Achadinhos"}
+}

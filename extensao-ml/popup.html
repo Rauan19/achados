@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    * { box-sizing: border-box; }
+    body { width: 380px; margin: 0; font: 14px/1.4 system-ui, sans-serif; color: #171717; background: #f4f4f6; }
+    header { display: flex; align-items: center; gap: 8px; padding: 12px 14px; background: #FFE600; color: #2D3277; font-weight: 800; }
+    main { padding: 12px 14px; display: grid; gap: 10px; }
+    label { display: grid; gap: 3px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #666; }
+    input { width: 100%; padding: 7px 9px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
+    .linha { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button { width: 100%; padding: 10px; border: 0; border-radius: 10px; font-weight: 800; font-size: 14px; cursor: pointer; }
+    #coletar { background: #2D3277; color: #fff; }
+    #parar { background: #FF2E3B; color: #fff; display: none; }
+    #salvar { background: #fff; border: 1px solid #ccc; }
+    #status { background: #fff; border-radius: 10px; padding: 10px; font-size: 13px; min-height: 40px; }
+    #status b { color: #2D3277; }
+    .erro { color: #c00; font-weight: 700; }
+    details summary { cursor: pointer; font-weight: 700; color: #2D3277; }
+    details[open] { display: grid; gap: 8px; }
+
+    .lista-topo { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+    .lista-topo h2 { margin: 0 auto 0 0; font-size: 14px; color: #2D3277; }
+    .mini { width: auto; padding: 5px 9px; font-size: 12px; border-radius: 8px; background: #fff; border: 1px solid #ccc; font-weight: 700; }
+    #lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 330px; overflow-y: auto; }
+    #lista li { display: grid; grid-template-columns: 52px 1fr; gap: 9px; background: #fff; border-radius: 10px; padding: 7px; cursor: pointer; }
+    #lista li:hover { outline: 2px solid #2D3277; }
+    #lista img { width: 52px; height: 52px; object-fit: contain; border-radius: 6px; background: #f2f3f8; }
+    .nome { font-weight: 600; font-size: 12.5px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .precos { font-size: 12.5px; margin-top: 2px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .precos s { color: #999; }
+    .precos b { color: #15803d; }
+    .pct { background: #FF2E3B; color: #fff; font-weight: 800; font-size: 11px; padding: 1px 6px; border-radius: 99px; }
+    .link-ok { color: #15803d; font-size: 11px; font-weight: 700; }
+    .link-falta { color: #b45309; font-size: 11px; font-weight: 700; }
+    .vazio { text-align: center; color: #888; font-size: 13px; padding: 14px; background: #fff; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <header>🛒 Coletor de Achadinhos</header>
+  <main>
+    <div id="status">Abra a lista de produtos do painel de afiliados do Mercado Livre e clique em Coletar.</div>
+    <button id="coletar">▶ Coletar nesta página</button>
+    <button id="parar">■ Parar</button>
+    <button id="diag" class="mini" style="display:none;width:100%;padding:9px;background:#fff7d6;border-color:#f0c000">📋 Copiar diagnóstico (mande pro suporte)</button>
+
+    <div class="lista-topo">
+      <h2>Produtos coletados (<span id="qtd">0</span>)</h2>
+      <button class="mini" id="abrirFila" title="Abrir a fila no sistema">Fila ↗</button>
+      <button class="mini" id="csv" title="Baixar planilha">CSV ⬇</button>
+      <button class="mini" id="limpar" title="Limpar a lista da extensão">Limpar</button>
+    </div>
+    <ul id="lista"></ul>
+
+    <details id="config">
+      <summary>⚙️ Configurações</summary>
+      <label>Endereço do sistema <input id="url" placeholder="http://localhost:3000" /></label>
+      <label>Token (EXTENSAO_TOKEN) <input id="token" type="password" placeholder="vazio = só coleta na extensão" /></label>
+      <div class="linha">
+        <label>Desconto mín. (%) <input id="descontoMin" type="number" min="0" max="95" /></label>
+        <label>Máx. produtos <input id="maximo" type="number" min="1" max="500" /></label>
+      </div>
+      <div class="linha">
+        <label>Pausa mín. (s) <input id="pausaMin" type="number" min="1" step="0.5" /></label>
+        <label>Pausa máx. (s) <input id="pausaMax" type="number" min="1" step="0.5" /></label>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;text-transform:none;font-size:13px;color:#171717"><input id="pegarLink" type="checkbox" style="width:auto" /> Pegar link de afiliado (clica em “Compartilhar” em cada produto)</label>
+      <button id="salvar">Salvar configurações</button>
+    </details>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

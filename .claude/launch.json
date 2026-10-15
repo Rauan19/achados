@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "conversor",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "conversor-links",
+        "run",
+        "dev"
+      ],
+      "port": 3000
+    }
+  ]
+}

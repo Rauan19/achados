@@ -1,0 +1,22 @@
+{
+  "name": "videosmotion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sons": "node scripts/gerar-sons.mjs",
+    "studio": "remotion studio src/index.js",
+    "render": "remotion render src/index.js Achadinhos out/achadinhos-com-musica.mp4",
+    "render:sem-musica": "remotion render src/index.js AchadinhosSemMusica out/achadinhos-sem-musica.mp4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "^4.0.250",
+    "@remotion/google-fonts": "^4.0.250",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.250"
+  }
+}
